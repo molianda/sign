@@ -15,13 +15,17 @@
     ></map>
     <!-- 重新定位图标 -->
     <cover-view class="current" @tap="goCurrent">
-      <cover-image class="img" src="/static/images/location.png" />
+      <cover-image class="location" src="/static/images/location.png" />
+      <cover-view class="my" @click="goMy">
+        <cover-image src="/static/images/my.png" />
+      </cover-view>
     </cover-view>
-    <div>
+    <!-- vuex最简单的demo -->
+    <!-- <div>
       <button @click="btnClick('+')">+</button>
       <span>{{state}}</span>
       <button @click="btnClick('-')">-</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -41,8 +45,8 @@ export default {
       markers: [{
         iconPath: '/static/images/job.png',
         id: 0,
-        latitude: 23.099994,
-        longitude: 113.324520,
+        latitude: 40.03298,
+        longitude: 116.29891,
         width: 50,
         height: 50
       }]
@@ -81,6 +85,10 @@ export default {
         wx.setStorageSync('location', location)
         this.location = location;
       })
+    },
+    // 去我的页面
+    goMy(){
+      wx.navigateTo({ url: '/pages/my/main' });
     }
   },
 
@@ -96,15 +104,32 @@ export default {
   height: 100%;
 }
 map{
-  display: none;
   width: 100%;
   height: 100%;
 }
-.current{
+.location{
   position: fixed;
   bottom: 100rpx;
   width: 80rpx;
   height: 80rpx;
   left: 20rpx;
+}
+.my{
+  position: fixed;
+  background: #fff;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  bottom: 100rpx;
+  width: 120rpx;
+  height: 90rpx;
+  right: 0;
+  cover-image{
+    width: 70rpx;
+    height: 70rpx;
+    margin-top:10rpx;
+    margin-left:20rpx;
+    background: #eee;
+    border-radius: 50%;
+  }
 }
 </style>

@@ -11,5 +11,15 @@ export default new Vuex.Store({
   modules: {
     index
   },
+  //成为全剧用的时候不需要使用那个东西
+  state:{
+    info:{}  //用户信息
+  },
+  mutations:{
+    //更新全局state
+    updateState(state,payload){
+      state.info=payload
+    }
+  },
   plugins: [createLogger()]
 })
