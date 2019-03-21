@@ -26,6 +26,7 @@ export default {
   },
 
   watch: {
+    //坚挺地址的变化‘
     address(val, oldVal){
       this.search(val);
     }
@@ -37,6 +38,7 @@ export default {
     }),
     select(index){
       console.log("index...",index);
+      //更新地址数据
       this.updateState({
         address:this.suggestion[index]
       })

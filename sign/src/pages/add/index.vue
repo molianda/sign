@@ -123,10 +123,12 @@
           },
           // 提交添加面试
           async submit(){
+            //判断是否填写了公司名
             if(!this.current.company){
+              //显示提示内容
               wx.showToast({
-                title:"请输入公司名称",
-                icon:"none"
+                title:"请输入公司名称",//提示名称
+                icon:"none"           //icon图标
               });
               return false;
             }
@@ -147,6 +149,20 @@
             this.current.state_time=moment(this.dateShow).unix();
              let data=await this.submitInterview(this.current);
              console.log("data...",data)
+             if(data.code==0){
+               wx.showToast({
+                 title:"添加面试成功",
+                 icon:"none",
+                 success:res=>{
+                   wx.navigateTo({url:"/pages/index/main"})
+                 }
+               })
+             }else{
+               wx.showToast({
+                 title:date.msg,
+                 icon:fail
+               })
+             }
           }
           }
       }
