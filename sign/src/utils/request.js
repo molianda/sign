@@ -7,6 +7,8 @@ const HOST = 'https://127.0.0.1' // 更改
     //添加请求拦截器
 fly.interceptors.request.use((request) => {
     // 把openid放在请求头部
+
+    //组件的触发事件 redux，vuex中发请求--api--mock|server
     let openid = wx.getStorageSync('openid');
     if (openid) {
         request.headers['openid'] = openid;

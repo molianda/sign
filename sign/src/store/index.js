@@ -4,27 +4,23 @@ import createLogger from 'vuex/dist/logger';
 
 // 挂载modules
 import index from './modules/index'
+import interview from './modules/interview'
 
-Vue.use(Vuex);
-
+Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
-        index
+        index,
+        interview
     },
     state: {
-        info: {} //用户信息
+        info: {} // 用户信息
     },
-    //用于同步更改数据
     mutations: {
+        // 更新全局的state
         updateState(state, payload) {
-            console.log('state...', state, payload)
-                //更新全局的state
+            console.log('state2')
             state.info = payload;
         }
-    },
-    //异步更改数据
-    actions: {
-
     },
     plugins: [createLogger()]
 })

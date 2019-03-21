@@ -5,7 +5,7 @@
       <input type="text" placeholder="面试地址" v-model="address">
     </header>
     <ul>
-      <li v-for="(item, index) in suggestion" :key="index" hover-class="hover">
+      <li v-for="(item, index) in suggestion" :key="index" hover-class="hover" @click="select(index)">
         <p>{{item.title}}</p>
         <p>{{item.address}}</p>
       </li>
@@ -31,7 +31,7 @@ export default {
       state2: state=>state.index.count,
     })
   },
-
+  //http://123.206.55.50:7001/user/code2session
   watch: {
     address(val, oldVal){
       this.search(val);
@@ -40,8 +40,14 @@ export default {
 
   methods: {
     ...mapMutations({
-      changeNum: 'index/changeCount'
-    })
+      updateState: 'interview/updateState'
+    }),
+    select(index){
+      this.updateState({
+        address:this.suggestion[index]
+      })
+      wx.navigateBack()
+    }
   },
 
   created () {

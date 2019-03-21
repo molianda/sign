@@ -18,7 +18,7 @@
         <p>为了更好的使用我们的服务，我们需要获取你的手机号码</p>
         <p class="confir">
           <button>取消</button>
-          <button open-type="getPhoneNumber" @getphonenumber="onGotUserInfo">确定</button>
+          <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumbe">确定</button>
           
           <!--<button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">确定</button>-->
           <!---->
@@ -80,16 +80,10 @@ export default {
     //     this.location = location;
     //   })
     //},
-    onGotUserInfo(e){
+    getPhoneNumbe(e){
       
     }
   },
-
-  // created () {
-  //   let location = wx.getStorageSync('location');
-  //   let phone = wx.getStorageSync('phone');
-  //   this.location = location;
-  // }
   onShow(){
     if(!this.info.phone){
       this.showPhoneDialog=false;
