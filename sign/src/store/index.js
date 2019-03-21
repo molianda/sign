@@ -4,6 +4,7 @@ import createLogger from 'vuex/dist/logger';
 
 // 挂载modules
 import index from './modules/index'
+import interview from './modules/interview'
 
 import interview from "./modules/interview"
 

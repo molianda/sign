@@ -19,7 +19,6 @@ export default {
         success: async res=>{
           console.log('res...', res);
           let data = await login(res.code);
-
           this.updateState(data.data)
           wx.setStorageSync('openid', data.data.openid);
         }

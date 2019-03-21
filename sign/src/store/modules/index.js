@@ -1,5 +1,5 @@
 const state = {
-  count: 1
+    count: 1
 };
 
 const getters = {
@@ -20,10 +20,10 @@ const actions = {
 };
 
 export default {
-  // 命名空间
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions
+    // 命名空间
+    namespaced: true,
+    state,
+    getters,
+    mutations,
+    actions
 }
