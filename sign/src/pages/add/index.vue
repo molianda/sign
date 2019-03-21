@@ -155,10 +155,27 @@
                     });
                     return false;
                 }
-                //天年假时间戳到表单
+                //添加时间戳到表单
                 this.current.start_time = moment(this.dateShow).unix();
                 let data = await this.submitInterview(this.current);
                 console.log('data...', data);
+                //处理添加结果
+                if (data.code == 0) {
+                    wx.showToast({
+                        title: '添加面试成功',
+                        icon: 'none',
+                        success: res => {
+                            wx.navigateTo({
+                                url: '/pages/index/main'
+                            })
+                        }
+                    });
+                } else {
+                    wx.showToast({
+                        title: data.msg,
+                        icon: 'none'
+                    });
+                }
             }
         }
     }
