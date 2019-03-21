@@ -1,28 +1,25 @@
 <template>
-    <div class="wrap">
-        <header>
-            <div class="mine">
-                <image src="/static/images/mine.png" lazy-load="false"></image>
-            </div>
-            <p>176******9025</p>
-        </header>
-        <ul>
-            <li>
-                <icon type="waiting" size="24px"></icon>
-                <span class="my">我的面试</span>
-                <span>〉</span>
-            </li>
-        </ul>
-        <div class="tan" v-if="isShow">
-            <div class="cont">
-                <span>获取手机号</span>
-                <div class="btns">
-                    <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">确定</button>
-                    <button @click="cancel">取消</button>
-                </div>
-            </div>
-        </div>
+  <div class="wrap">
+    <header>
+      <div class="avatar">
+        <image src="/static/images/my.png" lazy-load="false"></image>
+      </div>
+      <p>176****6605</p>
+    </header>
+    <ul>
+      <li>
+        <icon type="waiting" size="18px" />
+        <span>
+          我的面试
+        </span>
+        <image src="/static/images/arrow.svg"></image>
+      </li>
+    </ul>
+    <div class="phone" v-if="showPhoneDialog">
+      <p>为了更好的使用我们的服务，我们需要获取你的手机号码</p>
+      <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">允许获取手机号</button>
     </div>
+  </div>
 </template>
 
 <script>
@@ -34,10 +31,11 @@
         mapState,
         mapMutations
     } from 'vuex'
+
     export default {
         data() {
             return {
-                isShow: true
+                showPhoneDialog: true
             }
         },
 
@@ -49,107 +47,79 @@
 
         methods: {
             getPhoneNumber(e) {
-                console.log('e...', e)
-                console.log('info...', this.info)
-            },
-            cancel() {
-                this.isShow = false;
+                console.log('e...', e);
             }
         },
+
         onShow() {
             if (!this.info.phone) {
-                this.isShow = false;
+                this.showPhoneDialog = false;
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .wrap {
-        height: 100%;
-        position: relative;
-    }
-    
     header {
         background: #F4F6F9;
         width: 100%;
-        height: 400rpx;
+        height: 350rpx;
+        box-sizing: border-box;
+        padding: 50rpx 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        .mine {
+        .avatar {
             width: 100rpx;
             height: 100rpx;
-            background: orange;
-            border-radius: 50%;
-            line-height: 125rpx;
+            background: #fff;
             text-align: center;
-            image {
-                display: inline-block;
-                width: 70%;
-                height: 70%;
-            }
+            padding: 20rpx;
+            border-radius: 50%;
+        }
+        image {
+            width: 90%;
+            height: 90%;
         }
     }
     
-    ul {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 0 20rpx;
-        box-sizing: border-box;
-        margin-top: 40rpx;
-        li {
-            width: 100%;
-            height: 80rpx;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #F4F6F9;
-            icon {
-                padding: 0 10rpx;
-                box-sizing: border-box;
-            }
-            .my {
-                flex: 1;
-                height: 100%;
-                line-height: 80rpx;
-                margin: 0 10rpx;
-            }
-        }
-    }
-    
-    .tan {
+    .phone {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, .3);
-        position: absolute;
-        top: 0;
-        left: 0;
-        .cont {
-            width: 300px;
-            height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p {
+            width: 60%;
             background: #fff;
-            margin: 100px auto;
-            border-radius: 10px;
-            text-align: center;
-            padding: 0 10px;
-            box-sizing: border-box;
-            input {
-                display: inline-block;
-                border: 1px solid #ccc;
-                width: 100%;
-                height: 30px;
-                margin: 30px 0;
-            }
-            button {
-                width: 100%;
-                height: 40px;
-                font-size: 16px;
-                line-height: 40px;
-                margin: 20rpx 0
-            }
+        }
+        button {
+            width: 60%;
+        }
+    }
+    
+    li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 50rpx 40rpx 0 40rpx;
+        span:nth-child(2) {
+            flex: 1;
+            margin-left: 40rpx;
+            color: #666;
+            font-size: 36rpx;
+        }
+        image {
+            width: 40rpx;
+            height: 40rpx;
         }
     }
 </style>
