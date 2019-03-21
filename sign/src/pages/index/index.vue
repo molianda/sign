@@ -31,7 +31,6 @@
 </template>
 
 <script>
-    import card from '@/components/card'
     import {
         getLocation,
         getAuth
@@ -67,10 +66,6 @@
             })
         },
 
-        components: {
-            card
-        },
-
         methods: {
             ...mapMutations({
                 changeNum: 'index/changeCount'
@@ -102,7 +97,7 @@
             // 去添加面试页面
             goAdd() {
                 wx.navigateTo({
-                    url: '/pages/add/main'
+                    url: '/pages/sign/add/main'
                 });
             }
         },

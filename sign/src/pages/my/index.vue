@@ -7,7 +7,7 @@
             <p>176******9025</p>
         </header>
         <ul>
-            <li>
+            <li @click="goSignList">
                 <icon type="waiting" size="24px"></icon>
                 <span class="my">我的面试</span>
                 <span>〉</span>
@@ -60,6 +60,10 @@
                         // complete
                     }
                 }) */
+            },
+                goSignList(){
+                wx.navigateTo({ url: '/pages/sign/list/main' });
+                }
             },
             cancel() {
                 this.isShow = false;
