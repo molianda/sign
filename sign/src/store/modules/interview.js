@@ -1,3 +1,4 @@
+import { addSign } from '@/api/index'
 const state = {
     list: [],
     current: {

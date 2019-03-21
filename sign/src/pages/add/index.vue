@@ -124,7 +124,6 @@
                     column,
                     value
                 } = e.target;
-                console.log(e.target)
                 let date = [...this.info.date];
                 date[column] = value;
                 this.info.date = date;
