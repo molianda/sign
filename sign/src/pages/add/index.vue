@@ -130,8 +130,35 @@
                 this.info.date = date;
             },
             //提交添加面试
-            async submit(){
-
+            async submit() {
+                //判断公司名称是否为空
+                if (!this.current.company) {
+                    wx.showToast({
+                        title: '请输入公司名称',
+                        icon: 'none'
+                    });
+                    return false;
+                }
+                //判断手机号是否为空
+                if (!/^1(3|4|5|7|8)\d{9}$/.test(this.current.phone)) {
+                    wx.showToast({
+                        title: '请输入面试联系人的手机号或者座机号',
+                        icon: 'none'
+                    });
+                    return false;
+                }
+                //判断公司地址
+                if (!this.current.address.address) {
+                    wx.showToast({
+                        title: '请选择公司地址',
+                        icon: 'none'
+                    });
+                    return false;
+                }
+                //天年假时间戳到表单
+                this.current.start_time = moment(this.dateShow).unix();
+                let data = await this.submitInterview(this.current);
+                console.log('data...', data);
             }
         }
     }
