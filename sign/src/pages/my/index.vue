@@ -61,10 +61,10 @@
                     }
                 }) */
             },
-                goSignList(){
+            goSignList(){
                 wx.navigateTo({ url: '/pages/sign/list/main' });
-                }
-            },
+            }
+            ,
             cancel() {
                 this.isShow = false;
             }
