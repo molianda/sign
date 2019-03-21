@@ -5,7 +5,8 @@
       <input type="text" placeholder="面试地址" v-model="address">
     </header>
     <ul>
-      <li @click="select(index)" v-for="(item, index) in suggestion" :key="index" hover-class="hover">
+
+      <li v-for="(item, index) in suggestion" :key="index" hover-class="hover" @click="select(index)">
         <p>{{item.title}}</p>
         <p>{{item.address}}</p>
       </li>
@@ -26,6 +27,7 @@ export default {
   },
 
   watch: {
+    //坚挺地址的变化‘
     address(val, oldVal){
       this.search(val);
     }
@@ -36,7 +38,8 @@ export default {
       updateState: 'interview/updateState'
     }),
     select(index){
-      console.log('index.....',index)
+      console.log("index...",index);
+      //更新地址数据
       this.updateState({
         address:this.suggestion[index]
       })
@@ -46,6 +49,8 @@ export default {
 
   created () {
     var that = this;
+
+    //使用防抖函数控制事件的触发频率
     this.search = debounce((val)=>{
       this.$map.search({
         keyword: val,

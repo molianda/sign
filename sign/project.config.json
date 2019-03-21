@@ -41,14 +41,16 @@
 				},
 				{
 					"id": -1,
-					"name": "添加面试",
-					"pathName": "pages/add/main",
+
+					"name": "我的",
+					"pathName": "pages/index/main",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "我的页面",
+
+					"name": "我的",
 					"pathName": "pages/my/main",
 					"scene": null
 				}

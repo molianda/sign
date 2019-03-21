@@ -14,10 +14,12 @@
       @regionchange="regionChange"
     ></map>
     <!-- 重新定位图标 -->
-    <cover-view class="current">
-      <cover-image class="location" @tap="goCurrent" src="/static/images/location.png" />
+
+    <cover-view class="current" @tap="goCurrent">
+      <cover-image class="location" src="/static/images/location.png" />
       <button class="add" @tap="goAdd">添加面试</button>
-      <cover-view class="my" @tap="goMy">
+      <cover-view class="my" @click="goMy">
+
         <cover-image src="/static/images/my.png" />
       </cover-view>
     </cover-view>
@@ -91,9 +93,9 @@ export default {
     goMy(){
       wx.navigateTo({ url: '/pages/my/main' });
     },
-    // 去添加面试页面
+
     goAdd(){
-      wx.navigateTo({ url: '/pages/add/main' });
+      wx.navigateTo({url:"/pages/add/main"})
     }
   },
 
@@ -123,29 +125,32 @@ map{
 }
 .add{
   position: fixed;
-  width: 100%;
-  height: 100rpx;
+
+  width:100%;
+  height:100rpx;
   background: #000;
-  color: #fff;
+  color:#fff;
   font-weight: 500;
-  bottom: 0;
-  left: 0;
+  bottom:0;
+  left:0;
   font-size: 40rpx;
 }
 .my{
   position: fixed;
   background: #fff;
-  border-top-left-radius: 50rpx;
-  border-bottom-left-radius: 50rpx;
-  bottom: 150rpx;
+
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  bottom: 100rpx;
   width: 120rpx;
-  height: 100rpx;
+  height: 90rpx;
   right: 0;
   cover-image{
     width: 70rpx;
     height: 70rpx;
-    margin-top:15rpx;
-    margin-left: 15rpx;
+
+    margin-top:10rpx;
+    margin-left:20rpx;
     background: #eee;
     border-radius: 50%;
   }

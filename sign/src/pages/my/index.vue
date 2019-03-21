@@ -1,87 +1,178 @@
 <template>
   <div class="wrap">
-    <header>
-      <image src="/static/images/logo.png" lazy-load="false"></image>
-      <p>176****6605</p>
-    </header>
-    <ul>
-      <li>
-        <icon type="waiting" size="24px" />
-        <span>
-          我的面试
+
+    <div class="content">
+      <header>
+        <span class="mine">
+          <img src="/static/images/mine.png" alt="">
         </span>
-        <span>〉</span>
-      </li>
-    </ul>
-    <div class="phone" v-if="showPhoneDialog">
-      <p>为了更好的使用我们的服务，我们需要获取你的手机号码</p>
-      <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">允许获取手机号</button>
+        <p>150*****233</p>
+      </header>
+      <ul>
+        <li>
+          <icon type="waiting" size="24px"></icon>
+          <p>我的面试</p>
+          <span>〉</span>
+        </li>
+      </ul>
+    </div>
+
+
+    <div v-if="flag?true:false" class="model">
+      <div class="main">
+        <div class="title">
+          还没有获取到您的电话号码,需要获取您的电话号码，是否同意
+        </div>
+        <div class="btns">
+          <button>取消</button>
+          <button open-type="getPhoneNumber" @click="sure">确定</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import {getLocation, getAuth} from '@/utils/index.js'
-import {mapState, mapMutations} from 'vuex'
 
-export default {
-  data () {
-    return {
-      showPhoneDialog: true
-    }
-  },
+  import card from '@/components/card'
+  import login from "@/api"
+  import { getLocation, getAuth } from '@/utils/index.js'
+  import { mapState, mapMutations } from 'vuex'
 
-  computed: {
-    ...mapState({
-      info: state=>state.info
-    })
-  },
+  export default {
+    data() {
+      return {
+        flag: 1,
+      }
+    },
 
-  methods: {
-    getPhoneNumber(e){
-      console.log('e...', e);
-    }
-  },
+    computed: {
+      ...mapState({
+        info: state => state.info
+      })
+    },
 
-  onShow() {
-    if (!this.info.phone){
-      this.showPhoneDialog = false;
+
+    methods: {
+
+      sure() {
+        let user = wx.getStorageSync("login");
+        console.log(user)
+        wx.login
+        this.flag = 0;
+        console.log("info....", this.info)
+      }
+    },
+
+    created() {
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-header{
-  background: #F4F6F9;
-  width: 100%;
-  height: 400rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  image{
-    width: 100rpx;
-    height: 100rpx;;
+  .wrap {
+    width: 100%;
+    height: 100%;
   }
-}
-.phone{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0, .3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  p{
-    width: 60%;
-    background: #fff;
+
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      width: 100%;
+      height: 200px;
+      background:  #F4F6F9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .mine {
+        width: 150rpx;
+        height: 150rpx;
+        background: orange;
+        border-radius: 50%;
+        text-align:center;
+        line-height:200rpx;
+        image {
+          width: 100rpx;
+          height: 100rpx;
+        }
+      }
+
+
+    }
+    ul{
+      width:100%;
+      flex: 1;
+      li{
+        width:100%;
+        height:60px;
+        display:flex;
+        line-height:60px;
+        icon{
+          padding:18px 20px;
+        }
+        p{
+          height:100%;
+          flex: 1;
+        }
+        span{
+          height:100%;
+          padding:0 10px;
+        }
+      }
+    }
   }
-  button{
-    width: 60%;
+
+  .model {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .main {
+      width: 90%;
+      height: 300px;
+      background: #fff;
+      border-radius: 10px;
+      margin: 0 auto;
+      margin-top: 150px;
+      padding: 0 5px;
+
+
+      .title {
+
+        width: 100%;
+        height: 200px;
+        box-sizing: border-box;
+        padding: 50px 20px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        line-height: 40px;
+      }
+
+      .btns {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        margin-top: 50px;
+        justify-content: space-around;
+
+        button {
+          display: inline-block;
+          width: 100px;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          border: 0;
+        }
+      }
+    }
   }
-}
 </style>

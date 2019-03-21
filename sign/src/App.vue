@@ -1,7 +1,8 @@
 <script>
 import {getLocation, getAuth} from '@/utils/index.js'
 import {login} from '@/api/index'
-import {mapMutations} from 'vuex'
+
+import {mapMutations} from "vuex"
 
 export default {
   created () {
@@ -18,15 +19,18 @@ export default {
         success: async res=>{
           console.log('res...', res);
           let data = await login(res.code);
-          this.updateState(data.data);
+
+          this.updateState(data.data)
           wx.setStorageSync('openid', data.data.openid);
         }
       })
     // }
   },
-  methods: {
+
+  methods:{
     ...mapMutations({
-      updateState: 'updateState'
+      updateState:"updateState"
+
     })
   },
 }

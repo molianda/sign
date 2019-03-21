@@ -3,6 +3,8 @@
     "pages/index/main",
     "pages/search/main",
     "pages/my/main",
+    "pages/logs/main",
+    "pages/counter/main",
     "pages/add/main"
   ],
   "permission": {
