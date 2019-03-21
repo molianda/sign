@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
-    "pages/counter/main"
+    "pages/search/main",
+    "pages/my/main",
+    "pages/add/main"
   ],
   "permission": {
     "scope.userLocation": {

@@ -9,10 +9,10 @@ const getters = {
 // 同步改变
 const mutations = {
   changeCount(state, payload){
-    console.log('state...', state, payload);
-    payload === '+'?state.count++: state.count--;
+    console.log('state...', state, payload)
+    payload === '+'?state.count++: state.count--
   }
-};
+}
 
 // 异步改变
 const actions = {
