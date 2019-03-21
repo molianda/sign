@@ -40,7 +40,7 @@
   export default {
     data() {
       return {
-        flag: 0,
+        flag: 1,
       }
     },
 

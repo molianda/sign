@@ -4,12 +4,14 @@ import createLogger from 'vuex/dist/logger';
 
 // 挂载modules
 import index from './modules/index'
+import interview from "./modules/interview"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    index
+    index,
+    interview
   },
   //成为全剧用的时候不需要使用那个东西
   state:{

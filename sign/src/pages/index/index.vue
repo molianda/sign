@@ -16,6 +16,7 @@
     <!-- 重新定位图标 -->
     <cover-view class="current" @tap="goCurrent">
       <cover-image class="location" src="/static/images/location.png" />
+      <button class="add" @tap="goAdd">添加面试</button>
       <cover-view class="my" @click="goMy">
         <cover-image src="/static/images/my.png" />
       </cover-view>
@@ -89,6 +90,9 @@ export default {
     // 去我的页面
     goMy(){
       wx.navigateTo({ url: '/pages/my/main' });
+    },
+    goAdd(){
+      wx.navigateTo({url:"/pages/add/main"})
     }
   },
 
@@ -113,6 +117,17 @@ map{
   width: 80rpx;
   height: 80rpx;
   left: 20rpx;
+}
+.add{
+  position: fixed;
+  width:100%;
+  height:100rpx;
+  background: #000;
+  color:#fff;
+  font-weight: 500;
+  bottom:0;
+  left:0;
+  font-size: 40rpx;
 }
 .my{
   position: fixed;
