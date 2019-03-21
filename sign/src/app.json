@@ -5,7 +5,9 @@
     "pages/my/main",
     "pages/logs/main",
     "pages/counter/main",
-    "pages/add/main"
+    "pages/sign/add/main",
+    "pages/sign/list/main",
+    "pages/sign/detail/detail"
   ],
   "permission": {
     "scope.userLocation": {
