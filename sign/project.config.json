@@ -61,9 +61,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "面试详情",
 					"pathName": "pages/sign/detail/main",
+					"query": "id=31",
 					"scene": null
 				}
 			]
