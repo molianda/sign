@@ -18,9 +18,7 @@ const mutations = {
 const actions = {
 
 };
-function hh (){
-  
-}
+
 export default {
   // 命名空间
   namespaced: true,
