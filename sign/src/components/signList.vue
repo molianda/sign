@@ -1,36 +1,45 @@
 <template>
   <div class="wrap">
-      <ul v-if="list.length">
-        <li v-for="{item,index} in list" :key="index">
-          <p>
-            <span>{{item.company}}</span>
-            <span :class="'tag'+(item.status+2)">{{item.status?item.status==1?'已放弃':'未开始':'已打卡'}}</span>
-          </p>
-          <p>{{item.address.address}}</p>
-          <p>
-            <span>面试时间：{{item.start_time}}</span>
-            <span :class="'tag'+(2-item.status)">{{item.remind?'未提醒':'已提醒'}}</span>
-          </p>
-        </li>
-      </ul>
-      <p v-else class="none">当前分类还没有面试！</p>
+    <ul v-if="list.length">
+      <li v-for="item in list" :key="item.id" @click="goDetail(item.id)">
+        <p>
+          <span>{{item.company}}</span>
+          <span :class="'tag'+(item.status+2)">{{item.status?item.status==1?'已放弃':'未开始':'已打卡'}}</span>
+        </p>
+        <p>{{item.address.address}}</p>
+        <p>
+          <span>面试时间: {{item.start_time}}</span>
+          <span :class="'tag'+(2-item.status)">{{item.remind?'未提醒':'已提醒'}}</span>
+        </p>
+      </li>
+    </ul>
+    <p v-else class="none">当前分类还没有面试!</p>
   </div>
 </template>
 
 <script>
+
+
 export default {
   props: {
-    list:{
-      type:Array,
-      default:[]
+    list: {
+      type: Array,
+      default: []
+    }
+  },
+  methods: {
+    goDetail(id){
+      wx.navigateTo({
+        url: '/pages/sign/detail/main?id='+id
+      })
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .wrap{
-  margin-top:88rpx;
+  margin-top: 88rpx;
 }
 li{
   border-top: 20rpx solid #eee;
