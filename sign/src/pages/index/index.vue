@@ -33,9 +33,14 @@
 </template>
 
 <script>
-import card from '@/components/card'
-import {getLocation, getAuth} from '@/utils/index.js'
-import {mapState, mapMutations} from 'vuex'
+    import {
+        getLocation,
+        getAuth
+    } from '@/utils/index.js'
+    import {
+        mapState,
+        mapMutations
+    } from 'vuex'
 
 export default {
   data () {
@@ -56,29 +61,48 @@ export default {
     }
   },
 
-  computed: {
-    ...mapState({
-      state: state=>state.index.count,
-      state2: state=>state.index.count,
-    })
-  },
+        computed: {
+            ...mapState({
+                state: state => state.index.count,
+                state2: state => state.index.count,
+            })
+        },
 
-  components: {
-    card
-  },
+        methods: {
+            ...mapMutations({
+                changeNum: 'index/changeCount'
+            }),
+            btnClick(type) {
+                this.changeNum(type);
+            },
+            regionChange(e) {
 
-  methods: {
-    ...mapMutations({
-      changeNum: 'index/changeCount'
-    }),
-    btnClick(type){
-      this.changeNum(type);
-    },
-    regionChange(e){
+            },
+            // 点击标注物
+            marketTap(e) {
 
-    },
-    // 点击标注物
-    marketTap(e){
+            },
+            // 重新定位
+            goCurrent() {
+                getAuth('scope.userLocation', async() => {
+                    let location = await getLocation();
+                    wx.setStorageSync('location', location)
+                    this.location = location;
+                })
+            },
+            // 去我的页面
+            goMy() {
+                wx.navigateTo({
+                    url: '/pages/my/main'
+                });
+            },
+            // 去添加面试页面
+            goAdd() {
+                wx.navigateTo({
+                    url: '/pages/sign/add/main'
+                });
+            }
+        },
 
     },
     // 重新定位
@@ -97,13 +121,6 @@ export default {
     goAdd(){
       wx.navigateTo({url:"/pages/add/main"})
     }
-  },
-
-  created () {
-    let location = wx.getStorageSync('location');
-    this.location = location;
-  }
-}
 </script>
 
 <style lang="scss" scoped>
