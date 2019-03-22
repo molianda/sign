@@ -15,7 +15,7 @@
 
 <script>
 import {debounce} from '@/utils/index.js'
-import {mapState, mapMutations} from 'vuex'
+import {mapMutations} from 'vuex'
 
 export default {
   data () {
@@ -25,14 +25,8 @@ export default {
     }
   },
 
-  computed: {
-    ...mapState({
-      state: state=>state.index.count,
-      state2: state=>state.index.count,
-    })
-  },
-  //http://123.206.55.50:7001/user/code2session
   watch: {
+    // 监听input框变化，调用智能提示
     address(val, oldVal){
       this.search(val);
     }
@@ -43,15 +37,19 @@ export default {
       updateState: 'interview/updateState'
     }),
     select(index){
+      console.log('index...', index);
+      // 更新当前地址
       this.updateState({
-        address:this.suggestion[index]
+        address: this.suggestion[index]
       })
-      wx.navigateBack()
+      // 返回上一页
+      wx.navigateBack();
     }
   },
 
   created () {
     var that = this;
+    // 使用函数防抖控制事件触发频率
     this.search = debounce((val)=>{
       this.$map.search({
         keyword: val,

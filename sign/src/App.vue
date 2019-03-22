@@ -2,6 +2,7 @@
 import {getLocation, getAuth} from '@/utils/index.js'
 import {login} from '@/api/index'
 import {mapMutations} from 'vuex'
+
 export default {
   created () {
     // 用户一打开小程序，就做定位
@@ -17,7 +18,7 @@ export default {
         success: async res=>{
           console.log('res...', res);
           let data = await login(res.code);
-          this.updateState(data.data)
+          this.updateState(data.data);
           wx.setStorageSync('openid', data.data.openid);
         }
       })
@@ -25,7 +26,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      updateState:'updatestate'
+      updateState: 'updateState'
     })
   },
 }

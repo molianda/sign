@@ -5,10 +5,13 @@ import createLogger from 'vuex/dist/logger';
 // 挂载modules
 import index from './modules/index'
 import interview from './modules/interview'
+import sign from './modules/sign'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
 export default new Vuex.Store({
     modules: {
+        sign,
         index,
         interview
     },
@@ -18,7 +21,7 @@ export default new Vuex.Store({
     mutations: {
         // 更新全局的state
         updateState(state, payload) {
-            console.log('state2')
+            console.log('stategloab', state)
             state.info = payload;
         }
     },
