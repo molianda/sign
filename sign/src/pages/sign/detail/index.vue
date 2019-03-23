@@ -47,18 +47,7 @@
         onLoad(options){
             //获取id
             this.id=options.id
-        },
-        async onShow(){
-            wx.showLoading({
-                title:'加载数据中……',
-                mask:true
-            })
-            await this.getDetail(this.id);
-            //修改标题
-            wx.setNavigationBarTitle({
-                title:this.info.company
-            })
-            wx.hideLoading();
+            console.log(this.id)
         }
     }
 </script>

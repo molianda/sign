@@ -47,7 +47,7 @@ const actions = {
         return new Promise(async(resolve, reject) => {
             let data = await getSignDetail(payload);
             commit('updateState', { info: data.data })
-            console.log(state.info);
+            console.log(state);
             resolve();
         })
     }
