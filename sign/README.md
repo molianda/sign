@@ -1,6 +1,6 @@
 # sign
 
-> A Mpvue project
+> 面试管理软件
 
 ## Build Setup
 
