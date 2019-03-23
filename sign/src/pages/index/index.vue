@@ -104,7 +104,7 @@ export default {
             }
         },
 
-    },
+    
     // 重新定位
     goCurrent(){
       getAuth('scope.userLocation', async ()=>{
@@ -120,7 +120,7 @@ export default {
 
     goAdd(){
       wx.navigateTo({url:"/pages/add/main"})
-    }
+    }}
 </script>
 
 <style lang="scss" scoped>

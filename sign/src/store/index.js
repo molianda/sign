@@ -6,25 +6,24 @@ import createLogger from 'vuex/dist/logger';
 import index from './modules/index'
 import interview from './modules/interview'
 
-import interview from "./modules/interview"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {
-    index,
-    interview
-  },
+    modules: {
+        index,
+        interview
+    },
 
-  //成为全剧用的时候不需要使用那个东西
-  state:{
-    info:{}  //用户信息
-  },
-  mutations:{
-    //更新全局state
-    updateState(state,payload){
-      state.info=payload
-    }
-  },
-  plugins: [createLogger()]
+    //成为全剧用的时候不需要使用那个东西
+    state: {
+        info: {} //用户信息
+    },
+    mutations: {
+        //更新全局state
+        updateState(state, payload) {
+            state.info = payload
+        }
+    },
+    plugins: [createLogger()]
 })

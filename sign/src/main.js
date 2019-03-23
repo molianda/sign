@@ -12,7 +12,7 @@ App.mpType = 'app'
 Vue.prototype.$store = store;
 // 挂载QQMap到原型上
 var $map = new QQMapWx({
-  key: 'X7RBZ-MMOKR-UQEWJ-WSCXC-IVXVK-IFFLL'
+    key: 'X7RBZ-MMOKR-UQEWJ-WSCXC-IVXVK-IFFLL'
 })
 Vue.prototype.$map = $map;
 
