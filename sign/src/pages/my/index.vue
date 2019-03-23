@@ -1,6 +1,5 @@
 <template>
   <div class="wrap">
-
     <div class="content">
       <header>
         <span class="mine">
@@ -9,15 +8,13 @@
         <p>150*****233</p>
       </header>
       <ul>
-        <li>
+        <li @click="goDetail">
           <icon type="waiting" size="24px"></icon>
           <p>我的面试</p>
           <span>〉</span>
         </li>
       </ul>
     </div>
-
-
     <div v-if="flag?true:false" class="model">
       <div class="main">
         <div class="title">
@@ -34,7 +31,6 @@
 
 <script>
 
-  import card from '@/components/card'
   import login from "@/api"
   import { getLocation, getAuth } from '@/utils/index.js'
   import { mapState, mapMutations } from 'vuex'
@@ -54,13 +50,17 @@
 
 
     methods: {
-
       sure() {
         let user = wx.getStorageSync("login");
         console.log(user)
         wx.login
         this.flag = 0;
         console.log("info....", this.info)
+      },
+      goDetail(){
+        wx.navigateTo({
+          url: '/pages/sign/detail/main'
+        })
       }
     },
 

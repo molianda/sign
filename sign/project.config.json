@@ -41,7 +41,6 @@
 				},
 				{
 					"id": -1,
-
 					"name": "我的",
 					"pathName": "pages/index/main",
 					"query": "",
@@ -49,10 +48,8 @@
 				},
 				{
 					"id": -1,
-
 					"name": "我的",
 					"pathName": "pages/my/main",
-<<<<<<< HEAD
 					"query": "",
 					"scene": null
 				},
@@ -65,12 +62,9 @@
 				},
 				{
 					"id": 4,
-					"name": "面试详情",
+					"name": "detail",
 					"pathName": "pages/sign/detail/main",
-					"query": "id=31",
-=======
-
->>>>>>> 11f919601205c05569fee8d1fa5f610d7900cb24
+					"query": "id=1",
 					"scene": null
 				}
 			]
