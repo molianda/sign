@@ -1,23 +1,31 @@
 <template>
   <div class="wrap">
-    <header>
-      <div class="avatar">
-        <image src="/static/images/my-red.png" lazy-load="false"></image>
-      </div>
-      <p>183····3239</p>
-    </header>
-    <ul>
-      <li @click="goSignList">
-        <icon type="waiting" size="18px" />
-        <span>
-          我的面试
+    <div class="content">
+      <header>
+        <span class="mine">
+          <img src="/static/images/mine.png" alt="">
         </span>
-        <image src="/static/images/next.png"></image>
-      </li>
-    </ul>
-    <div class="phone" v-if="showPhoneDialog">
-      <p>为了更好的使用我们的服务，我们需要获取你的手机号码</p>
-      <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">允许获取手机号</button>
+        <p>150*****233</p>
+      </header>
+      <ul>
+        <li @click="goDetail">
+          <icon type="waiting" size="24px"></icon>
+          <p>我的面试</p>
+          <span>〉</span>
+        </li>
+      </ul>
+    </div>
+    <div v-if="flag?true:false" class="model">
+      <div class="main">
+        <div class="title">
+          还没有获取到您的电话号码,需要获取您的电话号码，是否同意
+        </div>
+        <div class="btns">
+          <button>取消</button>
+          <button open-type="getPhoneNumber" @click="sure">确定</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>

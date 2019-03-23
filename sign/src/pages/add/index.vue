@@ -1,4 +1,5 @@
 <template>
+
   <div class="wrap">
     <p>面试信息</p>
     <ul>
@@ -6,11 +7,11 @@
         <lable for="">公司名称</lable>
         <input type="text" v-model="current.company" placeholder="请输入公司名称">
       </li>
-       <li>
+        <li>
         <lable for="">公司电话</lable>
         <input type="number" v-model="current.phone" placeholder="请输入面试联系人电话" maxlength="11">
       </li>
-       <li>
+        <li>
         <lable for="">面试时间</lable>
         <picker
           mode="multiSelector"
@@ -21,7 +22,7 @@
         ><view class="date">{{dateShow}}</view>
         </picker>
       </li>
-       <li>
+        <li>
         <lable for="">面试地址</lable>
         <input @tap="goSearch" type="text" disabled v-model="current.address.address" placeholder="请选择面试地址">
       </li>
@@ -30,7 +31,6 @@
     <textarea type="text" v-model="current.description" placeholder="备注信息(可选，100个字以内)"/>
     <button :class="btnEnable?'': 'disable'" @click="submit">确认</button>
   </div>
-
 </template>
 
 
@@ -52,7 +52,7 @@ export default {
     }
   },
   created(){
-     // 如果当前时间是十一点之后，过滤掉今天
+      // 如果当前时间是十一点之后，过滤掉今天
     if (moment().hour() == 23){
       this.info.date = [1,0,0];
     }
@@ -124,56 +124,48 @@ export default {
     },
     // 提交添加面试
     async submit(){
-      // 判断公司名称是否为空
-      if (!this.current.company){
+      //判断是否填写了公司名
+      if(!this.current.company){
+        //显示提示内容
         wx.showToast({
-          title: '请输入公司名称', //提示的内容,
-          icon: 'none', //图标,
+          title:"请输入公司名称",//提示名称
+          icon:"none"           //icon图标
         });
         return false;
       }
-      // 判断手机号是否符合规范
-      if (!/^1(3|4|5|7|8)\d{9}$/.test(this.current.phone) || !/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(this.current.phone)){
+      if(!/^1(3|4|5|7|8)\d{9}$/.test(this.current.phone) || !/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(this.current.phone)){
         wx.showToast({
-          title: '请输入面试联系人的手机或座机', //提示的内容,
-          icon: 'none', //图标,
+          title:"请输入面试联系人的手机或座机",
+          icon:"none"
         });
         return false;
       }
-      // 判断公司地址
-      if (!this.current.address.address){
+      if(!this.current.address.address){
         wx.showToast({
-          title: '请选择公司地址', //提示的内容,
-          icon: 'none', //图标,
+          title:"请选择公司地址",
+          icon:"none"
         });
         return false;
       }
-      // 添加时间戳到表单
-      this.current.start_time = moment(this.dateShow).unix();
-      let data = await this.submitInterview(this.current);
-      console.log('data...', data);
-      // 处理添加结果
-      if (data.code == 0){
-        wx.showModal({
-          title: '系统提示', //提示的标题,
-          content: data.msg, //提示的内容,
-          showCancel: false,
-          confirmText: '确定', //确定按钮的文字，默认为取消，最多 4 个字符,
-          confirmColor: '#197DBF', //确定按钮的文字颜色,
-          success: res => {
-            if (res.confirm) {
-             wx.navigateTo({ url: '/pages/index/main' });
+      this.current.state_time=moment(this.dateShow).unix();
+        let data=await this.submitInterview(this.current);
+        console.log("data...",data)
+        if(data.code==0){
+          wx.showToast({
+            title:"添加面试成功",
+            icon:"none",
+            success:res=>{
+              wx.navigateTo({url:"/pages/index/main"})
             }
-          }
-        });
-      }else{
-        wx.showToast({
-          title: data.msg, //提示的内容,
-          icon: 'fail'//图标,
-        });
-      }
+          })
+        }else{
+          wx.showToast({
+            title:date.msg,
+            icon:fail
+          })
+        }
     }
-  }
+    }
 }
 </script>
 
@@ -245,4 +237,3 @@ button.disable{
   background: #999;
 }
 </style>
-    

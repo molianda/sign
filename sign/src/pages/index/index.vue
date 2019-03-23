@@ -14,10 +14,12 @@
       @regionchange="regionChange"
     ></map>
     <!-- 重新定位图标 -->
-    <cover-view class="current">
-      <cover-image class="location" @tap="goCurrent" src="/static/images/location.png" />
+
+    <cover-view class="current" @tap="goCurrent">
+      <cover-image class="location" src="/static/images/location.png" />
       <button class="add" @tap="goAdd">添加面试</button>
-      <cover-view class="my" @tap="goMy">
+      <cover-view class="my" @click="goMy">
+
         <cover-image src="/static/images/my.png" />
       </cover-view>
     </cover-view>
@@ -31,8 +33,14 @@
 </template>
 
 <script>
-import {getLocation, getAuth} from '@/utils/index.js'
-import {mapState, mapMutations} from 'vuex'
+    import {
+        getLocation,
+        getAuth
+    } from '@/utils/index.js'
+    import {
+        mapState,
+        mapMutations
+    } from 'vuex'
 
 export default {
   data () {
@@ -53,27 +61,50 @@ export default {
     }
   },
 
-  computed: {
-    ...mapState({
-      state: state=>state.index.count,
-      state2: state=>state.index.count,
-    })
-  },
+        computed: {
+            ...mapState({
+                state: state => state.index.count,
+                state2: state => state.index.count,
+            })
+        },
 
-  methods: {
-    ...mapMutations({
-      changeNum: 'index/changeCount'
-    }),
-    btnClick(type){
-      this.changeNum(type);
-    },
-    regionChange(e){
+        methods: {
+            ...mapMutations({
+                changeNum: 'index/changeCount'
+            }),
+            btnClick(type) {
+                this.changeNum(type);
+            },
+            regionChange(e) {
 
-    },
-    // 点击标注物
-    marketTap(e){
+            },
+            // 点击标注物
+            marketTap(e) {
 
-    },
+            },
+            // 重新定位
+            goCurrent() {
+                getAuth('scope.userLocation', async() => {
+                    let location = await getLocation();
+                    wx.setStorageSync('location', location)
+                    this.location = location;
+                })
+            },
+            // 去我的页面
+            goMy() {
+                wx.navigateTo({
+                    url: '/pages/my/main'
+                });
+            },
+            // 去添加面试页面
+            goAdd() {
+                wx.navigateTo({
+                    url: '/pages/sign/add/main'
+                });
+            }
+        },
+
+    
     // 重新定位
     goCurrent(){
       getAuth('scope.userLocation', async ()=>{
@@ -86,17 +117,10 @@ export default {
     goMy(){
       wx.navigateTo({ url: '/pages/my/main' });
     },
-    // 去添加面试页面
-    goAdd(){
-      wx.navigateTo({ url: '/pages/sign/add/main' });
-    }
-  },
 
-  created () {
-    let location = wx.getStorageSync('location');
-    this.location = location;
-  }
-}
+    goAdd(){
+      wx.navigateTo({url:"/pages/add/main"})
+    }}
 </script>
 
 <style lang="scss" scoped>
@@ -111,36 +135,39 @@ map{
 }
 .location{
   position: fixed;
-  bottom: 160rpx;
+  bottom: 150rpx;
   width: 80rpx;
   height: 80rpx;
   left: 20rpx;
 }
 .add{
   position: fixed;
-  width: 100%;
-  height: 100rpx;
+
+  width:100%;
+  height:100rpx;
   background: #000;
-  color: #fff;
+  color:#fff;
   font-weight: 500;
-  bottom: 0;
-  left: 0;
+  bottom:0;
+  left:0;
   font-size: 40rpx;
 }
 .my{
   position: fixed;
   background: #fff;
-  border-top-left-radius: 50rpx;
-  border-bottom-left-radius: 50rpx;
-  bottom: 150rpx;
+
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  bottom: 100rpx;
   width: 120rpx;
-  height: 100rpx;
+  height: 90rpx;
   right: 0;
   cover-image{
-    width: 80rpx;
-    height: 80rpx;
-    margin-top: 10rpx;
-    margin-left: 10rpx;
+    width: 70rpx;
+    height: 70rpx;
+
+    margin-top:10rpx;
+    margin-left:20rpx;
     background: #eee;
     border-radius: 50%;
   }

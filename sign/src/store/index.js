@@ -13,16 +13,18 @@ export default new Vuex.Store({
     modules: {
         sign,
         index,
-        interview
+        interview,
+        sign
     },
+
+    //成为全剧用的时候不需要使用那个东西
     state: {
-        info: {} // 用户信息
+        info: {} //用户信息
     },
     mutations: {
-        // 更新全局的state
+        //更新全局state
         updateState(state, payload) {
-            console.log('stategloab', state)
-            state.info = payload;
+            state.info = payload
         }
     },
     plugins: [createLogger()]

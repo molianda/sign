@@ -70,7 +70,7 @@ li{
     color: #999;
     line-height: 1.2;
     overflow: hidden;
-    text-overflow:ellipsis;//文本溢出显示省略号
+    text-overflow:ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

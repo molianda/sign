@@ -29,7 +29,7 @@ export default {
       updateState: 'sign/updateState'
     }),
     ...mapActions({
-      getList: 'sign/getList'
+        getList: 'sign/getList'
     }),
     tabChange(index){
       this.updateState({active: index, page: 1});
@@ -43,8 +43,7 @@ export default {
     this.getList();
   },
   onReachBottom(){
-    this.updateState({page: this.page+1});
-    this.getList();
+    
   }
 }
 
