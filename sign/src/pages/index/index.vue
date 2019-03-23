@@ -31,23 +31,22 @@
 </template>
 
 <script>
-import card from '@/components/card'
 import {getLocation, getAuth} from '@/utils/index.js'
 import {mapState, mapMutations} from 'vuex'
 
 export default {
   data () {
     return {
-      // 用户当前位置
+      // 用户当前位置40.0416819285,116.2995046377
       location: {
-        latitude: 40.03298,
-        longitude: 116.29891
+        latitude: 40.0416819285,
+        longitude: 116.2995046377
       },
       markers: [{
         iconPath: '/static/images/job.png',
         id: 0,
-        latitude: 40.03298,
-        longitude: 116.29891,
+        latitude: 40.0416819285,
+        longitude: 116.2995046377,
         width: 50,
         height: 50
       }]
@@ -62,7 +61,7 @@ export default {
   },
 
   components: {
-    card
+    
   },
 
   methods: {
@@ -93,7 +92,7 @@ export default {
     },
     // 去添加面试页面
     goAdd(){
-      wx.navigateTo({ url: '/pages/add/main' });
+      wx.navigateTo({ url: '/pages/sign/add/main' });
     }
   },
 

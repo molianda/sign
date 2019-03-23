@@ -150,13 +150,11 @@
         console.log("data.....",data);
                 wx.showModal({
           title: '提示',
-          content: '这是一个模态弹窗',
+          content: '是否修改面试信息',
           success(res) {
             if (res.confirm) {
               wx.navigateBack()
-              console.log('用户点击确定')
             } else if (res.cancel) {
-              console.log('用户点击取消')
             }
           }
         })
