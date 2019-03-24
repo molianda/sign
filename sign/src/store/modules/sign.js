@@ -46,8 +46,12 @@ const actions = {
         console.log('paload...', payload)
         return new Promise(async(resolve, reject) => {
             let data = await getSignDetail(payload);
+            if (data.data.address) {
+                data.data.address = JSON.parse(data.data.address);
+            }
+            data.data.start_time = formatTime(data.data.start_time);
             commit('updateState', { info: data.data })
-            console.log(state);
+            console.log(state.info);
             resolve();
         })
     }
