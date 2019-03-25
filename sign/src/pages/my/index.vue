@@ -59,7 +59,7 @@
       },
       goDetail(){
         wx.navigateTo({
-          url: '/pages/sign/detail/main'
+          url: '/pages/sign/list/main'
         })
       }
     },

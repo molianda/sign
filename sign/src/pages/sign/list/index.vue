@@ -34,6 +34,14 @@ export default {
     tabChange(index){
       this.updateState({active: index, page: 1});
       this.getList();
+    },
+    getdata(type) {
+        if (type === 'push') { //上拉加载
+            this.updateState({page:this.page+1});
+        } else if (type === 'pull') { //下拉刷新
+            this.updateState({page: 1});
+        }
+        this.getList();
     }
   },
   components: {
@@ -42,8 +50,11 @@ export default {
   onShow(){
     this.getList();
   },
-  onReachBottom(){
-    
+  onPullDownRefresh() { //下拉刷新
+      this.getdata('pull')
+  },
+  onReachBottom() { //上拉加载
+      this.getdata('push')
   }
 }
 
