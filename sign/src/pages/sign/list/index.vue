@@ -21,7 +21,8 @@ export default {
     ...mapState({
       active: state=>state.sign.active,
       list: state=>state.sign.list,
-      page: state=>state.sign.page
+      page: state=>state.sign.page,
+      hasMore:state=>state.sign.hasMore
     })
   },
   methods: {
@@ -37,7 +38,9 @@ export default {
     },
     getdata(type) {
         if (type === 'push') { //上拉加载
-            this.updateState({page:this.page+1});
+          if(this.hasMore){
+              this.updateState({page:this.page+1});
+          }
         } else if (type === 'pull') { //下拉刷新
             this.updateState({page: 1});
         }

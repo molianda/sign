@@ -30,8 +30,6 @@
         <button :class="btnEnable?'': 'disable'" @click="submit">确认</button>
     </div>
 </template>
-
-
 <script>
     import {
         mapState,

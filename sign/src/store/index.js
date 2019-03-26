@@ -16,7 +16,7 @@ export default new Vuex.Store({
         sign
     },
 
-    //成为全剧用的时候不需要使用那个东西
+    //成为全局用的时候不需要使用那个东西
     state: {
         info: {} //用户信息
     },
